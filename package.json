@@ -1,0 +1,83 @@
+{
+  "name": "es6-template-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "hs ./docs -p 8080 -s -c-1 -o",
+    "build": "rollup -c rollup.config.js --watch",
+    "release": "rollup -c rollup.config.release.js",
+    "jsdoc": "jsdoc -c jsdoc.config.js",
+    "eslint": "eslint src/",
+    "test": "jest --config=./jest.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "jest": true
+    },
+    "extends": "airbnb-base",
+    "globals": {},
+    "parserOptions": {
+      "ecmaVersion": 2019
+    },
+    "rules": {
+      "no-param-reassign": [
+        "error",
+        {
+          "props": false
+        }
+      ],
+      "no-unused-vars": [
+        "error",
+        {
+          "args": "none"
+        }
+      ],
+      "no-underscore-dangle": 0
+    }
+  },
+  "eslintIgnore": [
+    "docs/**/*.*",
+    "coverage/**/*.*"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.1",
+    "http-server": "^0.11.1",
+    "jest": "^24.7.1",
+    "jsdoc": "^3.5.5",
+    "postcss-simple-vars": "^5.0.2",
+    "rollup": "^1.10.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-terser": "^4.0.4"
+  },
+  "dependencies": {
+    "canvas-5-polyfill": "^0.1.5",
+    "dat.gui": "^0.7.6"
+  }
+}

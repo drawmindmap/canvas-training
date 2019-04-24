@@ -1,0 +1,16 @@
+$color-gradient-start: #efefff;
+$color-lightest: #fff;
+
+body,* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  padding: 2rem;
+  background-image: linear-gradient(to bottom,
+    $color-gradient-start 0%,
+    $color-lightest 100%
+  );
+  background-repeat: no-repeat;
+}

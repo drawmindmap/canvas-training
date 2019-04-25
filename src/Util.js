@@ -130,3 +130,11 @@ export function getPointAt(view, e) {
     y: point.y - bound.top,
   };
 }
+
+export function delay(time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });
+}

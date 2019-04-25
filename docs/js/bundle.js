@@ -4860,6 +4860,14 @@ function getPointAt(view, e) {
   };
 }
 
+function delay(time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });
+}
+
 var Clear = {
   clearRect: {
     clear: false,
@@ -5090,7 +5098,7 @@ var Path = {
       }
     },
   },
-  without_beginPath(ctx) {
+  async without_beginPath(ctx) {
     ctx.strokeStyle = randomColor();
     ctx.lineWidth = 5;
     ctx.beginPath();
@@ -5098,13 +5106,15 @@ var Path = {
     ctx.lineTo(300, 210);
     ctx.lineTo(100, 210);
     ctx.stroke();
-    setTimeout(() => {
-      ctx.strokeStyle = randomColor();
-      ctx.rect(10, 10, 100, 100);
-      ctx.stroke();
-    }, 2000);
+    await delay(2000);
+    if (ctx.canvas._lesson !== 'Path_without_beginPath') {
+      return;
+    }
+    ctx.strokeStyle = randomColor();
+    ctx.rect(10, 10, 100, 100);
+    ctx.stroke();
   },
-  with_beginPath(ctx) {
+  async with_beginPath(ctx) {
     ctx.strokeStyle = randomColor();
     ctx.lineWidth = 5;
     ctx.beginPath();
@@ -5112,12 +5122,14 @@ var Path = {
     ctx.lineTo(300, 210);
     ctx.lineTo(100, 210);
     ctx.stroke();
-    setTimeout(() => {
-      ctx.strokeStyle = randomColor();
-      ctx.beginPath();
-      ctx.rect(10, 10, 100, 100);
-      ctx.stroke();
-    }, 2000);
+    await delay(2000);
+    if (ctx.canvas._lesson !== 'Path_with_beginPath') {
+      return;
+    }
+    ctx.strokeStyle = randomColor();
+    ctx.beginPath();
+    ctx.rect(10, 10, 100, 100);
+    ctx.stroke();
   },
   curve: {
     config: {
@@ -6217,7 +6229,7 @@ async function run() {
     }
     await method.draw();
   } else {
-    method(ctx);
+    await method(ctx);
   }
   if (method.clear !== false) {
     ctx.restore();
@@ -6234,6 +6246,7 @@ Object.keys(codes).forEach((lessonName) => {
 
 function setLesson(lesson) {
   lessons.value = lesson;
+  canvas._lesson = lesson;
   if (!lessons.value) {
     code.value = '';
     document.title = 'Canvas lessions';

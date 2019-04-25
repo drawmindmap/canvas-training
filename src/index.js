@@ -84,7 +84,7 @@ async function run() {
     }
     await method.draw();
   } else {
-    method(ctx);
+    await method(ctx);
   }
   if (method.clear !== false) {
     ctx.restore();
@@ -101,6 +101,7 @@ Object.keys(codes).forEach((lessonName) => {
 
 function setLesson(lesson) {
   lessons.value = lesson;
+  canvas._lesson = lesson;
   if (!lessons.value) {
     code.value = '';
     document.title = 'Canvas lessions';

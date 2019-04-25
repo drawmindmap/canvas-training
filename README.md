@@ -1,2 +1,2 @@
-# ES6 template project
-Include: ESLint, Jest, JSDoc, Rollup
+# Canvas
+Canvas training with code

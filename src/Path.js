@@ -2,6 +2,7 @@ import {
   toRadians,
   drawControlPoint,
   randomColor,
+  delay,
 } from './Util';
 
 export default {
@@ -191,7 +192,7 @@ export default {
       }
     },
   },
-  without_beginPath(ctx) {
+  async without_beginPath(ctx) {
     ctx.strokeStyle = randomColor();
     ctx.lineWidth = 5;
     ctx.beginPath();
@@ -199,13 +200,15 @@ export default {
     ctx.lineTo(300, 210);
     ctx.lineTo(100, 210);
     ctx.stroke();
-    setTimeout(() => {
-      ctx.strokeStyle = randomColor();
-      ctx.rect(10, 10, 100, 100);
-      ctx.stroke();
-    }, 2000);
+    await delay(2000);
+    if (ctx.canvas._lesson !== 'Path_without_beginPath') {
+      return;
+    }
+    ctx.strokeStyle = randomColor();
+    ctx.rect(10, 10, 100, 100);
+    ctx.stroke();
   },
-  with_beginPath(ctx) {
+  async with_beginPath(ctx) {
     ctx.strokeStyle = randomColor();
     ctx.lineWidth = 5;
     ctx.beginPath();
@@ -213,12 +216,14 @@ export default {
     ctx.lineTo(300, 210);
     ctx.lineTo(100, 210);
     ctx.stroke();
-    setTimeout(() => {
-      ctx.strokeStyle = randomColor();
-      ctx.beginPath();
-      ctx.rect(10, 10, 100, 100);
-      ctx.stroke();
-    }, 2000);
+    await delay(2000);
+    if (ctx.canvas._lesson !== 'Path_with_beginPath') {
+      return;
+    }
+    ctx.strokeStyle = randomColor();
+    ctx.beginPath();
+    ctx.rect(10, 10, 100, 100);
+    ctx.stroke();
   },
   curve: {
     config: {

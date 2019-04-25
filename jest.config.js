@@ -8,4 +8,5 @@ module.exports = {
   collectCoverageFrom: [
     'src/**',
   ],
+  testEnvironment: 'jest-environment-jsdom-fourteen',
 };
